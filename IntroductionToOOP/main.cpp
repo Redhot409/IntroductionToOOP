@@ -1,4 +1,4 @@
-//doubleroductionToOOP
+п»ї//introductionToOOP
 #include<iostream>
 #include<cmath>
 using namespace std;
@@ -7,7 +7,7 @@ using std::cout;
 using std::cin;
 
 
-class Point // где  point(структура или класс) - это тип данных
+class Point // РіРґРµ  point(СЃС‚СЂСѓРєС‚СѓСЂР° РёР»Рё РєР»Р°СЃСЃ) - СЌС‚Рѕ С‚РёРї РґР°РЅРЅС‹С…
 {
 	double x,x1,y,y1;
 
@@ -18,46 +18,46 @@ class Point // где  point(структура или класс) - это тип данных
 		 //x=-2; //must be a modifiable
 		 return x;
 	  }
-	 double get_y()const // метод get
+	 double get_y()const // РјРµС‚РѕРґ get
 	 {
 		 return y;
 	 }
 
 	 void set_x(double x) 
 	 {
-		 this->x = x; //set значение х
+		 this->x = x; //set Р·РЅР°С‡РµРЅРёРµ С…
 	 }
 	 void set_y(double y)
 	 {
-		 this->y =y; //set значение y
+		 this->y =y; //set Р·РЅР°С‡РµРЅРёРµ y
 	 }
 	 void set_x1(double x1)
 	 {
-		 this->x1 = pow(x1-x,2); //set значение x1
+		 this->x1 = pow(x1-x,2); //set Р·РЅР°С‡РµРЅРёРµ x1
 	 }
 	 void set_y1(double y1)
 	 {
-		 this->y1 = pow(y1-y,2); //set значение y1
+		 this->y1 = pow(y1-y,2); //set Р·РЅР°С‡РµРЅРёРµ y1
 	 }
 
-	// Метод нахождения расстояния до точки
+	// РњРµС‚РѕРґ РЅР°С…РѕР¶РґРµРЅРёСЏ СЂР°СЃСЃС‚РѕСЏРЅРёСЏ РґРѕ С‚РѕС‡РєРё
 	 double get_dist(double x, double y)const
 	 {
 		return sqrt(pow(x,2)+pow(y,2));
 	 }
 
-	 //Метод нахождения расстояния между двумя точками
+	 //РњРµС‚РѕРґ РЅР°С…РѕР¶РґРµРЅРёСЏ СЂР°СЃСЃС‚РѕСЏРЅРёСЏ РјРµР¶РґСѓ РґРІСѓРјСЏ С‚РѕС‡РєР°РјРё
 	 double get_dist_1(double x1, double y1)const
 	 {
 		 return sqrt(x1 + y1);
 	 }
 	 void result()
 	 {
-		 cout << "Расстояние до произвольной точки :" <<get_dist(x,y)<< endl;
+		 cout << "Р Р°СЃСЃС‚РѕСЏРЅРёРµ РґРѕ РїСЂРѕРёР·РІРѕР»СЊРЅРѕР№ С‚РѕС‡РєРё :" <<get_dist(x,y)<< endl;
 	 }
 	 void result_1()
 	 {
-		 cout << "Расстояние между двумя точками :" << get_dist_1(x1,y1) << endl;
+		 cout << "Р Р°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ РґРІСѓРјСЏ С‚РѕС‡РєР°РјРё :" << get_dist_1(x1,y1) << endl;
 	 }
 };
 
@@ -70,14 +70,14 @@ void main()
 #ifdef STRUCT_POINT
 	cout << "Hello OOP" << endl;
 
-	Podouble A;// напоминает объявление переменной double a
-	// Создание объекта А структуры Podouble
-   // Создание экземпляра А структуры Podouble
+	Podouble A;// РЅР°РїРѕРјРёРЅР°РµС‚ РѕР±СЉСЏРІР»РµРЅРёРµ РїРµСЂРµРјРµРЅРЅРѕР№ double a
+	// РЎРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚Р° Рђ СЃС‚СЂСѓРєС‚СѓСЂС‹ Podouble
+   // РЎРѕР·РґР°РЅРёРµ СЌРєР·РµРјРїР»СЏСЂР° Рђ СЃС‚СЂСѓРєС‚СѓСЂС‹ Podouble
 	A.x = 2;
 	A.y = 3;
-	cout << A.x << "\t" << A.y << endl;// прямой доступ по значению
+	cout << A.x << "\t" << A.y << endl;// РїСЂСЏРјРѕР№ РґРѕСЃС‚СѓРї РїРѕ Р·РЅР°С‡РµРЅРёСЋ
 
-	Podouble* pA = &A;// указатель на нашу точку A
+	Podouble* pA = &A;// СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅР°С€Сѓ С‚РѕС‡РєСѓ A
 	cout << pA->x << "\t" << pA->y << endl;
 #endif // STRUCT_POINT
 
