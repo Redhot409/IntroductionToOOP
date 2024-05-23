@@ -70,14 +70,14 @@ void main()
 #ifdef STRUCT_POINT
 	cout << "Hello OOP" << endl;
 
-	Podouble A;// напоминает объявление переменной double a
+	Point A;// напоминает объявление переменной double a
 	// Создание объекта А структуры Podouble
    // Создание экземпляра А структуры Podouble
 	A.x = 2;
 	A.y = 3;
 	cout << A.x << "\t" << A.y << endl;// прямой доступ по значению
 
-	Podouble* pA = &A;// указатель на нашу точку A
+	Point* pA = &A;// указатель на нашу точку A
 	cout << pA->x << "\t" << pA->y << endl;
 #endif // STRUCT_POINT
 
