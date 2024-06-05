@@ -1,4 +1,5 @@
 // Class Fraction
+#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 using namespace std;
 class Fraction;
@@ -256,13 +257,45 @@ std::ostream& operator<<(std::ostream& os, const Fraction& obj)
 	{
 		if (obj.get_integer())os << "(";
 		os << obj.get_numerator() << "/" << obj.get_denominator();
-		if (obj.get_integer())cout << ")";
+		if (obj.get_integer()); cout << ")";
 	}
 	else if (obj.get_integer() == 0) os << 0;
 	return os;
 }
+// Stream - это поток,
+// Ostream- output stream (поток вывода)
+// ISTREAM -input stream(поток ввода)
+//cin-console stream
+//cout - console output
+//std- standard namespace
+//:: - Scope operator (оператор разрешения видимости-позволяет зайти в пространство имен)
+// namespace (пространство имен) как папка, а имя, расположенное в нем, как файл
+//:: сам по себе выводит нас в global scope или же в глобальное пространство имен
 
-
+std::istream& operator>>(std::istream& is, Fraction& obj)
+{
+	const int SIZE = 32;
+	char buffer[SIZE]{};
+	//is >> buffer;
+	is.getline(buffer, SIZE);
+	int number[3];
+	int n = 0;
+	const char delimiters[] = "(/) +";
+	for (char* pch = strtok(buffer, delimiters); pch; pch = strtok(NULL, delimiters))
+		// Функция strtok разделяет строку на токены
+		// Функция strtok () изменяет входную строку!!!
+		number[n++] = atoi(pch);
+	// Функция atoi - ASCII string to int, принимает строку, и возвращает значение типа int, найденное в этой строке
+	//Pointer to Character (указатель на символ)
+	//for (int i = 0; i < n; i++)cout << number[i] << "\t"; cout << endl;
+	switch (n)
+	{
+	case 1:obj = Fraction(number[0]); break;
+	case 2:obj = Fraction(number[0],number[1]); break;
+	case 3:obj = Fraction(number[0],number[1],number[2]); break;
+	}
+	return is;
+}
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -322,8 +355,8 @@ void main()
 
 #ifdef STREAMS_CHECK
 	Fraction A(2, 3, 4);
-	//cout << A << endl;
-	cin >> "Введите простую дробь :" >> A >> endl;
+	cout << "Введите простую дробь :"; cin >> A;
+	cout<< A<< endl;
 #endif // STREAMS_CHECK
 
 }
