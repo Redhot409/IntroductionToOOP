@@ -7,6 +7,7 @@ class Fraction;
 Fraction operator*(Fraction left, Fraction right);
 Fraction operator/(const Fraction left, const Fraction right);
 
+#define delimiter "--------------------------"
 class Fraction
 {
 	int integer;
@@ -40,6 +41,7 @@ public:
 	}
 
 	//				Constructors
+	/////////////////////////////////////////
 
 	Fraction()
 	{
@@ -49,13 +51,24 @@ public:
 		denominator = 1;
 		cout << "DefaultConstructor:\t" << this << endl;
 	}
-	Fraction(int integer)
+	explicit Fraction(int integer)
 	{
 		this->integer = integer;
 		this->numerator = 0;
 		this->denominator = 1;
 		cout << "1ArgConstructor:\t" << this << endl;
 	}
+	Fraction(double decimal)
+	{
+		decimal += 1e-10;
+		integer = decimal;
+		decimal -= integer;
+		denominator = 1e+9;
+		numerator = decimal * denominator;
+		reduce();
+		cout << "Constructor:\t" << this << endl;
+	}
+
 	Fraction(int numerator,int denominator)
 	{
 		this->integer = 0;
@@ -84,6 +97,7 @@ public:
 	}
 
 	//					Operators:
+	//////////////////////////////////////////////////
 
 	Fraction& operator=(const Fraction& other)
 	{
@@ -127,8 +141,21 @@ public:
 		return old;// Возвращаем на место вызова старое знач
 	}
 
-	//				Methods:
+	             //Type-cast operators:
+	////////////////////////////////////////////////////
+	
+	 explicit operator int()
+	{
+		return integer;
+	}
+	 operator double()
+	 {
+		return integer + (double)numerator / denominator;	
+	 }
 
+	//				   Methods:
+	////////////////////////////////////////////////////
+	
 
 	Fraction& reduce()
 	{
@@ -200,6 +227,7 @@ Fraction operator/(const Fraction left, const Fraction right)
 	return left * right.inverted();
 }
 //         Comparison operators 
+//////////////////////////////////////////////////////////////
 
 bool operator==(Fraction left, Fraction right)
 {
@@ -247,7 +275,11 @@ bool operator >=(const Fraction& left, const Fraction& right)
 //#define CONSTRUCTORS_CHECK
 //#define ARITHMETICAL_OPERATORS_CHECK
 //#define COMPARISON_OPERATORS_CHECK
-#define STREAMS_CHECK
+//#define STREAMS_CHECK
+//#define CONVERSIONS_FROM_OTHER_TO_CLASS
+//#define CONVERSIONS_FROM_CLASS_TO_OTHER
+//#define CONVERSION_TASK_1
+#define CONVERSION_TASK_2
 
 
 std::ostream& operator<<(std::ostream& os, const Fraction& obj)
@@ -314,11 +346,11 @@ void main()
 	D.print();
 
 
-	Fraction E = D;
+	Fraction E = D;//Copy-constructor
 	E.print();
 
 	Fraction F;
-	F = E;
+	F = E;//Copy-Assignment
 	F.print();
 #endif // CONSTRUCTORS_CHECK
 
@@ -358,5 +390,31 @@ void main()
 	cout << "Введите простую дробь :"; cin >> A;
 	cout<< A<< endl;
 #endif // STREAMS_CHECK
+
+#ifdef CONVERSIONS_FROM_OTHER_TO_CLASS
+	Fraction A = (Fraction)5;
+
+	Fraction B;
+	cout << delimiter << endl;
+	B = Fraction(8);
+#endif // CONVERSIONS_FROM_OTHER_TO_CLASS
+
+#ifdef CONVERSION_TASK_1
+	Fraction A(2, 3, 4);
+	cout << A << endl;
+
+	double a = A;
+	
+	cout << a << endl;
+	/*int a = A;
+	cout << a << endl;*/
+#endif // CONVERSION_TASK_1
+
+#ifdef CONVERSION_TASK_2
+	Fraction B = 0.333;
+	cout << B << endl;
+
+#endif // CONVERSION_TASK_2
+
 
 }
