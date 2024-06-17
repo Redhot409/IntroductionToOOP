@@ -26,26 +26,26 @@ public:
 	//				Constructors:
 	//////////////////////////////////////////////////////////////
 
-	explicit String(int size = 80)
+	explicit String(int size = 80) :size(size), str(new char[size] {})
 	{
 
-		this->size = size;
-		this->str = new char[size] {};// {}-убирают мусор
+		//this->size = size;
+		//this->str = new char[size] {};// {}-убирают мусор
 		cout << "DefaultConstructor:\t" << this << endl;
 	}
 	 
-	String(const char str[])
+	String(const char str[]):size(strlen(str)+1),str(new char[size]{})
 	{
-		this->size = strlen(str) + 1;
-		this->str = new char[size] {};// !!!!!!!!!!!!!!!!!! вместо нул€
+		//this->size = strlen(str) + 1;
+		//this->str = new char[size] {};// !!!!!!!!!!!!!!!!!! вместо нул€
 		for (int i = 0; str[i]; i++)this->str[i] = str[i];
 		cout << "Constructor:\t" << this << endl;
 	}
-	String(const String& other)
+	String(const String& other):size(other.size),str(new char[size] {})
 	{	
 		//Deep copy
-		this->size = other.size;
-		this->str = new char[size] {};
+		//this->size = other.size;
+		//this->str = new char[size] {};
 		for (int i = 0; i < size; i++) this->str[i] = other.str[i];
 		cout << "CopyConstructor:\t" << this << endl;
 	}
@@ -105,13 +105,27 @@ String operator+(const String& left, const String& right)
 	buffer.print();
 	return buffer;
 }
+
+#define CONSTRUCTORS_CHECK
+//define CAT_CHECK
 void main()
 {
 	setlocale(LC_ALL, "");
-
+#ifdef CONSTRUCTORS_CHECK
 	/*String str;
 	str.print();*/
 
+	String str1; // def constr
+	String str2(8);//Single-arg constr
+	String str3 = "Hello";//Single-arg constr
+	String str4(); // «десь не созд объект, а только объфвл€етс€ функци€ str4()
+					// котора€ ничего не принимает ивозвращает объект класса "String"
+	//str4.print();
+	String str5{};// явный вызов конструктора по умолчанию
+	String str6{ str3 };//Copy constr
+
+#endif CONSTRUCTORS_CHECK
+#ifdef CAT_CHECK
 	String str1 = "Hello";
 	String str2 = "World";
 	str1 = str1;
@@ -126,5 +140,5 @@ void main()
 	cout << str1 << endl;
 	cout << str2 << endl;
 	cout << str3 << endl;//"HelloWorld"
-
+#endif CAT_CHECK
 } 
