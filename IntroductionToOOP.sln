@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Class Fraction", "Class Fra
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "String", "Srting\Srting.vcxproj", "{EFCFA9DA-9252-49A2-A9E2-A88A3D7B885A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Matrix", "Matrix\Matrix.vcxproj", "{C9300AF6-D59E-4A00-9C9A-3BB165B9BE9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{EFCFA9DA-9252-49A2-A9E2-A88A3D7B885A}.Release|x64.Build.0 = Release|x64
 		{EFCFA9DA-9252-49A2-A9E2-A88A3D7B885A}.Release|x86.ActiveCfg = Release|Win32
 		{EFCFA9DA-9252-49A2-A9E2-A88A3D7B885A}.Release|x86.Build.0 = Release|Win32
+		{C9300AF6-D59E-4A00-9C9A-3BB165B9BE9A}.Debug|x64.ActiveCfg = Debug|x64
+		{C9300AF6-D59E-4A00-9C9A-3BB165B9BE9A}.Debug|x64.Build.0 = Debug|x64
+		{C9300AF6-D59E-4A00-9C9A-3BB165B9BE9A}.Debug|x86.ActiveCfg = Debug|Win32
+		{C9300AF6-D59E-4A00-9C9A-3BB165B9BE9A}.Debug|x86.Build.0 = Debug|Win32
+		{C9300AF6-D59E-4A00-9C9A-3BB165B9BE9A}.Release|x64.ActiveCfg = Release|x64
+		{C9300AF6-D59E-4A00-9C9A-3BB165B9BE9A}.Release|x64.Build.0 = Release|x64
+		{C9300AF6-D59E-4A00-9C9A-3BB165B9BE9A}.Release|x86.ActiveCfg = Release|Win32
+		{C9300AF6-D59E-4A00-9C9A-3BB165B9BE9A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

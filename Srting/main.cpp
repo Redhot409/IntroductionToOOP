@@ -10,11 +10,23 @@ class String
 	char* str;//Адрес строки в динамической памяти
 	
 public:
-
+	int get_size()const
+	{
+		return size;
+	}
+	
+	const char* get_str()const
+	{
+		return str;
+	}
+	char* get_str()
+	{
+		return str;
+	}
 	//				Constructors:
 	//////////////////////////////////////////////////////////////
 
-	String(int size = 80)
+	explicit String(int size = 80)
 	{
 
 		this->size = size;
@@ -22,27 +34,20 @@ public:
 		cout << "DefaultConstructor:\t" << this << endl;
 	}
 	 
-	 String(char* str,int size)
+	String(const char str[])
 	{
-		this->size = size;
-		this->str = new char[size];
-		for (int i = 0; i <= size; i++)
-		{
-			this->str[i] = str[i];
-		}
+		this->size = strlen(str) + 1;
+		this->str = new char[size] {};// !!!!!!!!!!!!!!!!!! вместо нуля
+		for (int i = 0; str[i]; i++)this->str[i] = str[i];
 		cout << "Constructor:\t" << this << endl;
 	}
-
 	String(const String& other)
-	{
+	{	
+		//Deep copy
 		this->size = other.size;
-		this->str = new char[size];
-		for (int i = 0; i <= size; i++)
-		{
-			this->str[i] =other.str[i];
-		}
+		this->str = new char[size] {};
+		for (int i = 0; i < size; i++) this->str[i] = other.str[i];
 		cout << "CopyConstructor:\t" << this << endl;
-
 	}
 	~String()
 	{
@@ -56,14 +61,12 @@ public:
 
 	String& operator=(const String& other)
 	{
+		if (this == &other)return *this;
+		delete[] str;
 		this->size = other.size;
-		this->str = new char[size];
-		
-		for (int i = 0; i <= size; i++)
-		{
-			this->str[i] = other.str[i];
-		}
-		cout << "CopyAssignment:\t" << this << endl;
+		this->str = new char[size] {};
+		for (int i = 0; i < size; i++)this->str[i] = other.str[i];
+		cout << "CopyAssignment:\t\t" << this << endl;
 		return *this;
 	}
 
@@ -78,13 +81,30 @@ public:
 	
 	void print()const
 	{
-		cout << "Size:\t" << size << endl;
-		cout << "Str:\t" << str << endl;
+		cout << "Obj:\t" << this << "\t";
+		cout << "Size:\t" << size << "\t";
+		cout << "Addr:\t" << &str << "\t";
+		cout << "Str:\t" << str << "\t";
 	}
 
 
 };
 
+std::ostream& operator<<(std::ostream& os,const String& obj)
+	{
+		return os << obj.get_str();
+	}
+
+String operator+(const String& left, const String& right)
+{
+	String buffer (left.get_size() + right.get_size()-1);// from int to String
+	for (int i = 0; i < left.get_size(); i++)
+		buffer.get_str()[i] = left.get_str()[i];
+	for (int i = 0; i < right.get_size(); i++)
+		buffer.get_str()[i + left.get_size() - 1] = right.get_str()[i];
+	buffer.print();
+	return buffer;
+}
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -93,10 +113,18 @@ void main()
 	str.print();*/
 
 	String str1 = "Hello";
-	//String str2 = "World";
-	cout << str1 << endl;
-	//cout << str2 << endl;
+	String str2 = "World";
+	str1 = str1;
 
-	//String str3 = str1 + str2;
-	//cout << str3 << endl;//"HelloWorld"
-}
+	cout << str1 << endl;
+	cout << str2 << endl;
+
+	//String str3 = str1 + str2;//Copy constructor
+	String str3;
+	str3 = str1 +" "+ str2;
+	//str3.print();
+	cout << str1 << endl;
+	cout << str2 << endl;
+	cout << str3 << endl;//"HelloWorld"
+
+} 
