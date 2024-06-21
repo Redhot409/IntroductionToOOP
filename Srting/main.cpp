@@ -6,8 +6,8 @@ using namespace std;
 class String
 
 {
-	int size;//размер строки в Байтах
 	char* str;//Адрес строки в динамической памяти
+	int size;//размер строки в Байтах
 	
 public:
 	int get_size()const
@@ -106,8 +106,8 @@ String operator+(const String& left, const String& right)
 	return buffer;
 }
 
-#define CONSTRUCTORS_CHECK
-//define CAT_CHECK
+//#define CONSTRUCTORS_CHECK
+#define CAT_CHECK
 void main()
 {
 	setlocale(LC_ALL, "");
