@@ -50,7 +50,7 @@ public:
 	             //Type-cast operators:
 	////////////////////////////////////////////////////
 	
-	operator int();
+	explicit operator int();
 	operator double();
 
 	//				   Methods:
